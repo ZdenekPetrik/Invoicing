@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00EAF506-F67F-48AE-8FE6-D417633D65B2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Invoicing</RootNamespace>
+    <AssemblyName>Invoicing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="alexTradeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>alexTradeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alexTradeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alexTradeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>alexTradeModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Component\DataGridViewExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\DataGridViewExt.Designer.cs">
+      <DependentUpon>DataGridViewExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlItem.Designer.cs">
+      <DependentUpon>ctrlItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlInvoicesList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlInvoicesList.Designer.cs">
+      <DependentUpon>ctrlInvoicesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlListItems.Designer.cs">
+      <DependentUpon>ctrlListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlScanPDFs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlScanPDFs.Designer.cs">
+      <DependentUpon>ctrlScanPDFs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlShowOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlShowOrder.Designer.cs">
+      <DependentUpon>ctrlShowOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlSuppliers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlSuppliers.Designer.cs">
+      <DependentUpon>ctrlSuppliers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\_ctrlDefault.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\_ctrlDefault.Designer.cs">
+      <DependentUpon>_ctrlDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DayPrices.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Druh.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmCategory.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Firms.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddInvoice.Designer.cs">
+      <DependentUpon>frmAddInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddItems.Designer.cs">
+      <DependentUpon>frmAddItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCommitPair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCommitPair.Designer.cs">
+      <DependentUpon>frmCommitPair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFaseChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFaseChange.Designer.cs">
+      <DependentUpon>frmFaseChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFirmDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFirmDetail.Designer.cs">
+      <DependentUpon>frmFirmDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddOrder.Designer.cs">
+      <DependentUpon>frmAddOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDetailOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetailOrder.Designer.cs">
+      <DependentUpon>frmDetailOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDodavatele.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDodavatele.Designer.cs">
+      <DependentUpon>frmDodavatele.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFindOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFindOrder.Designer.cs">
+      <DependentUpon>frmFindOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPair.Designer.cs">
+      <DependentUpon>FrmPair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProductDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProductDetail.Designer.cs">
+      <DependentUpon>frmProductDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\_frmDefault.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\_frmDefault.Designer.cs">
+      <DependentUpon>_frmDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="History.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceItems.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceItemState.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceState.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Komodita.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListedCompany.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListedProduct.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainSetting.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modul\CAres.cs" />
+    <Compile Include="Modul\CDatabase.cs" />
+    <Compile Include="Modul\CHelper.cs" />
+    <Compile Include="Modul\CInvoices.cs" />
+    <Compile Include="Modul\CMainEventLog.cs" />
+    <Compile Include="Modul\CUser.cs" />
+    <Compile Include="Modul\equals.cs" />
+    <Compile Include="Modul\_Default.cs" />
+    <Compile Include="Orders.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderState.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pair.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PairType.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PodKomodita.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Priznak.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SazbaDPH.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanPDFs.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unity.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSetting.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wFirms.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wInvoices.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wItems.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wOrders.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wPair.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wProductTable.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wScanPDFs.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wWeekMinPricesTemp.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wWeekPrices.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wWeekPricesTemp.cs">
+      <DependentUpon>alexTradeModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\ctrlItem.resx">
+      <DependentUpon>ctrlItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlInvoicesList.resx">
+      <DependentUpon>ctrlInvoicesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlListItems.resx">
+      <DependentUpon>ctrlListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlScanPDFs.resx">
+      <DependentUpon>ctrlScanPDFs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlShowOrder.resx">
+      <DependentUpon>ctrlShowOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlSuppliers.resx">
+      <DependentUpon>ctrlSuppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\_ctrlDefault.resx">
+      <DependentUpon>_ctrlDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddInvoice.resx">
+      <DependentUpon>frmAddInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddItems.resx">
+      <DependentUpon>frmAddItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCommitPair.resx">
+      <DependentUpon>frmCommitPair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFaseChange.resx">
+      <DependentUpon>frmFaseChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFirmDetail.resx">
+      <DependentUpon>frmFirmDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddOrder.resx">
+      <DependentUpon>frmAddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDetailOrder.resx">
+      <DependentUpon>frmDetailOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDodavatele.resx">
+      <DependentUpon>frmDodavatele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFindOrder.resx">
+      <DependentUpon>frmFindOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPair.resx">
+      <DependentUpon>FrmPair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProductDetail.resx">
+      <DependentUpon>frmProductDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\_frmDefault.resx">
+      <DependentUpon>_frmDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="alexTradeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>alexTradeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="alexTradeModel.edmx.diagram">
+      <DependentUpon>alexTradeModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Adobe_PDF_file_icon_24x24.png" />
+    <Content Include="alexTradeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>alexTradeModel.edmx</DependentUpon>
+      <LastGenOutput>alexTradeModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="alexTradeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>alexTradeModel.edmx</DependentUpon>
+      <LastGenOutput>alexTradeModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="ares.ico" />
+    <Content Include="readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

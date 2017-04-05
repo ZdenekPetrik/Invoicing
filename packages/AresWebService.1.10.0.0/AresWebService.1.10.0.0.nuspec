@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>AresWebService</id>
+    <version>1.10.0.0</version>
+    <title>AresWebService</title>
+    <authors>Jan Vilimek,  GETMORE</authors>
+    <owners>Jan Vilimek,  GETMORE</owners>
+    <licenseUrl>https://areswebservice.codeplex.com/license</licenseUrl>
+    <projectUrl>https://areswebservice.codeplex.com/</projectUrl>
+    <iconUrl>https://www.codeplex.com/Download?ProjectName=areswebservice&amp;DownloadId=782074</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>web services proxy for ARES services</description>
+    <summary />
+    <releaseNotes>initial release for the community.</releaseNotes>
+    <copyright>Copyright Jan Vilimek, GETMORE (c) 2014</copyright>
+    <tags>ARES webservice net45</tags>
+  </metadata>
+</package>

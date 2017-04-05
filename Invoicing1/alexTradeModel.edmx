@@ -1,0 +1,1829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="alextradeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FirmCategory">
+          <Key>
+            <PropertyRef Name="idFirmCategory" />
+          </Key>
+          <Property Name="idFirmCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="25" />
+          <Property Name="idMainFirmCategory" Type="int" />
+        </EntityType>
+        <EntityType Name="Firms">
+          <Key>
+            <PropertyRef Name="idFirm" />
+          </Key>
+          <Property Name="idFirm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="idFirmCategory" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="idHistory" />
+          </Key>
+          <Property Name="idHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Poradi" Type="int" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Doba" Type="int" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="InvoiceOrder" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BasePrice" Type="float" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Price" Type="float" />
+          <Property Name="idUnit" Type="int" />
+          <Property Name="idSazbaDPH" Type="int" />
+          <Property Name="BasePriceBezDPH" Type="float" />
+          <Property Name="PriceBezDPH" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.InvoiceItemState' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InvoiceItemState">
+          <Key>
+            <PropertyRef Name="idInvoiceItemState" />
+          </Key>
+          <Property Name="idInvoiceItemState" Type="int" Nullable="false" />
+          <Property Name="idInvoiceItem" Type="int" />
+          <Property Name="StateValue" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="idUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="MyNumber" Type="int" />
+          <Property Name="HisNumber" Type="varchar" MaxLength="20" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Vat" Type="float" />
+          <Property Name="PriceFull" Type="float" />
+          <Property Name="NrItems" Type="int" />
+          <Property Name="DateDUZP" Type="date" />
+        </EntityType>
+        <EntityType Name="InvoiceState">
+          <Key>
+            <PropertyRef Name="idInvoiceState" />
+          </Key>
+          <Property Name="idInvoiceState" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="StateValue" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="idUser" Type="int" />
+        </EntityType>
+        <EntityType Name="MainSetting">
+          <Key>
+            <PropertyRef Name="idMainSetting" />
+          </Key>
+          <Property Name="idMainSetting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sValue" Type="nvarchar(max)" />
+          <Property Name="iValue" Type="int" />
+          <Property Name="dValue" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SCANPath" Type="nvarchar(max)" />
+          <Property Name="SCANPrefix" Type="nvarchar(max)" />
+          <Property Name="NrSCAN" Type="int" />
+          <Property Name="NrInvoices" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="idOrderState" />
+          </Key>
+          <Property Name="idOrderState" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="StateValue" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="idUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Pair">
+          <Key>
+            <PropertyRef Name="idPair" />
+          </Key>
+          <Property Name="idPair" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInvoiceItem" Type="int" />
+          <Property Name="idProduct" Type="int" />
+          <Property Name="DatePairPrice" Type="datetime" />
+          <Property Name="PairPrice" Type="float" />
+          <Property Name="idPairType" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="DatePairing" Type="datetime" />
+          <Property Name="PairWeek" Type="int" />
+        </EntityType>
+        <EntityType Name="PairType">
+          <Key>
+            <PropertyRef Name="idPairType" />
+          </Key>
+          <Property Name="idPairType" Type="int" Nullable="false" />
+          <Property Name="PairType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SazbaDPH">
+          <Key>
+            <PropertyRef Name="idSazbaDPH" />
+          </Key>
+          <Property Name="idSazbaDPH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SazbaDPH" Type="float" />
+          <Property Name="SazbaDPHText" Type="nvarchar" MaxLength="20" />
+          <Property Name="SazbaDPHTextShort" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="idState" />
+          </Key>
+          <Property Name="idState" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateType" Type="int" />
+          <Property Name="StateValue" Type="int" />
+          <Property Name="StateTypeDescription" Type="nvarchar" MaxLength="10" />
+          <Property Name="StateValueDescription" Type="nvarchar" MaxLength="25" />
+          <Property Name="StateValueInfo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Unity">
+          <Key>
+            <PropertyRef Name="idUnit" />
+          </Key>
+          <Property Name="idUnit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitShort" Type="nvarchar" MaxLength="10" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="50" />
+          <Property Name="isEdit" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginPassword" Type="nvarchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="isLogin" Type="bit" />
+          <Property Name="isInvoicing" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserSetting">
+          <Key>
+            <PropertyRef Name="idUserSetting" />
+          </Key>
+          <Property Name="idUserSetting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DayPrices">
+          <Key>
+            <PropertyRef Name="idDayPrices" />
+          </Key>
+          <Property Name="idDayPrices" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="idListedCompany" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="DatePrice" Type="datetime" />
+          <Property Name="WeekPrice" Type="int" />
+          <Property Name="MonthPrice" Type="int" />
+          <Property Name="YearPrice" Type="int" />
+          <Property Name="DayPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="Druh">
+          <Key>
+            <PropertyRef Name="idDruh" />
+          </Key>
+          <Property Name="idDruh" Type="int" Nullable="false" />
+          <Property Name="Druh" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Komodita">
+          <Key>
+            <PropertyRef Name="idKomodita" />
+          </Key>
+          <Property Name="idKomodita" Type="int" Nullable="false" />
+          <Property Name="idDruh" Type="int" />
+          <Property Name="Komodita" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ListedCompany">
+          <Key>
+            <PropertyRef Name="idListedCompany" />
+          </Key>
+          <Property Name="idListedCompany" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.supplier.ListedProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ListedProduct">
+          <Key>
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="idListedCompany" />
+          </Key>
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="idListedCompany" Type="int" Nullable="false" />
+          <Property Name="idProductOfCompany" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PodKomodita">
+          <Key>
+            <PropertyRef Name="idPodkomodita" />
+          </Key>
+          <Property Name="idPodkomodita" Type="int" Nullable="false" />
+          <Property Name="Podkomodita" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Priznak">
+          <Key>
+            <PropertyRef Name="idPriznak" />
+          </Key>
+          <Property Name="idPriznak" Type="int" Nullable="false" />
+          <Property Name="Priznak" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idKomodita" Type="int" />
+          <Property Name="idPodkomodita" Type="int" />
+          <Property Name="idPriznak" Type="int" />
+          <Property Name="Product" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="idUnit" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wFirms' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wFirms">
+          <Key>
+            <PropertyRef Name="idFirm" />
+          </Key>
+          <Property Name="idFirm" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="idFirmCategory" Type="int" />
+          <Property Name="Category" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wInvoices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wInvoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="int" Nullable="false" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="MyNumber" Type="int" />
+          <Property Name="HisNumber" Type="varchar" MaxLength="20" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Vat" Type="float" />
+          <Property Name="PriceFull" Type="float" />
+          <Property Name="NrItems" Type="int" />
+          <Property Name="DateDUZP" Type="date" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+          <Property Name="FirmIc" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmDic" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="FirmCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ScanPDFsAll" Type="varchar(max)" />
+          <Property Name="StateValue" Type="int" />
+          <Property Name="StateValueDescription" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="int" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="InvoiceOrder" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BasePrice" Type="float" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Price" Type="float" />
+          <Property Name="idUnit" Type="int" />
+          <Property Name="UnitShort" Type="nvarchar" MaxLength="10" />
+          <Property Name="UnitFull" Type="nvarchar" MaxLength="61" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+          <Property Name="BasePriceBezDPH" Type="float" />
+          <Property Name="PriceBezDPH" Type="float" />
+          <Property Name="idSazbaDPH" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wOrders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="idOrder" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="SCANPath" Type="nvarchar(max)" />
+          <Property Name="NrSCAN" Type="int" />
+          <Property Name="NrInvoices" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UserFullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+          <Property Name="MaxStateValue" Type="int" />
+          <Property Name="StateValueDescription" Type="nvarchar" MaxLength="25" />
+          <Property Name="SCANPrefix" Type="nvarchar(max)" />
+          <Property Name="CountInvoices" Type="int" />
+          <Property Name="ExpectedItems" Type="int" />
+          <Property Name="ExpectedPrice" Type="float" />
+          <Property Name="CountItems" Type="int" />
+          <Property Name="PriceItems" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wPair' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wPair">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="int" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="InvoiceOrder" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BasePrice" Type="float" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Price" Type="float" />
+          <Property Name="idUnit" Type="int" />
+          <Property Name="UnitShort" Type="nvarchar" MaxLength="10" />
+          <Property Name="UnitFull" Type="nvarchar" MaxLength="61" />
+          <Property Name="idFirm" Type="int" />
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+          <Property Name="BasePriceBezDPH" Type="float" />
+          <Property Name="PriceBezDPH" Type="float" />
+          <Property Name="idSazbaDPH" Type="int" />
+          <Property Name="DateDUZP" Type="date" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="InvoiceWeek" Type="int" />
+          <Property Name="idPair" Type="int" />
+          <Property Name="idProduct" Type="int" />
+          <Property Name="PairPrice" Type="float" />
+          <Property Name="DatePairPrice" Type="datetime" />
+          <Property Name="PairWeek" Type="int" />
+          <Property Name="idPairType" Type="int" />
+          <Property Name="PairType" Type="nvarchar" MaxLength="50" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="DatePairing" Type="datetime" />
+          <Property Name="Product" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rozdil" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.dbo.wScanPDFs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="int" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+          <Property Name="MyNumber" Type="int" />
+          <Property Name="HisNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Price" Type="float" />
+          <Property Name="NrItems" Type="int" />
+          <Property Name="DateDUZP" Type="date" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.supplier.wProductTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wProductTable">
+          <Key>
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="idUnit" />
+          </Key>
+          <Property Name="Druh" Type="nvarchar" MaxLength="255" />
+          <Property Name="Komodita" Type="nvarchar" MaxLength="255" />
+          <Property Name="Podkomodita" Type="nvarchar" MaxLength="255" />
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="Product" Type="nvarchar" MaxLength="255" />
+          <Property Name="Priznak" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="255" />
+          <Property Name="UnitShort" Type="nvarchar" MaxLength="10" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="50" />
+          <Property Name="idUnit" Type="int" Nullable="false" />
+          <Property Name="idKomodita" Type="int" />
+          <Property Name="idPriznak" Type="int" />
+          <Property Name="idDruh" Type="int" />
+          <Property Name="idPodkomodita" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.supplier.wWeekMinPricesTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wWeekMinPricesTemp">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="44" Type="float" />
+          <Property Name="45" Type="float" />
+          <Property Name="46" Type="float" />
+          <Property Name="47" Type="float" />
+          <Property Name="48" Type="float" />
+          <Property Name="49" Type="float" />
+          <Property Name="50" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.supplier.wWeekPrices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wWeekPrices">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="42" Type="float" />
+          <Property Name="43" Type="float" />
+          <Property Name="44" Type="float" />
+          <Property Name="45" Type="float" />
+          <Property Name="46" Type="float" />
+          <Property Name="47" Type="float" />
+          <Property Name="48" Type="float" />
+          <Property Name="49" Type="float" />
+          <Property Name="50" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SSCP.supplier.wWeekPricesTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wWeekPricesTemp">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="44" Type="float" />
+          <Property Name="45" Type="float" />
+          <Property Name="46" Type="float" />
+          <Property Name="47" Type="float" />
+          <Property Name="48" Type="float" />
+          <Property Name="49" Type="float" />
+          <Property Name="50" Type="float" />
+        </EntityType>
+        <EntityContainer Name="alextradeModelStoreContainer">
+          <EntitySet Name="FirmCategory" EntityType="Self.FirmCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceState" EntityType="Self.InvoiceState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainSetting" EntityType="Self.MainSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderState" EntityType="Self.OrderState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pair" EntityType="Self.Pair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PairType" EntityType="Self.PairType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SazbaDPH" EntityType="Self.SazbaDPH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScanPDFs" EntityType="Self.ScanPDFs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unity" EntityType="Self.Unity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSetting" EntityType="Self.UserSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayPrices" EntityType="Self.DayPrices" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="Druh" EntityType="Self.Druh" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="Komodita" EntityType="Self.Komodita" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="ListedCompany" EntityType="Self.ListedCompany" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="PodKomodita" EntityType="Self.PodKomodita" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="Priznak" EntityType="Self.Priznak" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="supplier" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [History].[idHistory] AS [idHistory], 
+    [History].[Poradi] AS [Poradi], 
+    [History].[Datum] AS [Datum], 
+    [History].[Text] AS [Text], 
+    [History].[Doba] AS [Doba]
+    FROM [dbo].[History] AS [History]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InvoiceItemState" EntityType="Self.InvoiceItemState" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InvoiceItemState].[idInvoiceItemState] AS [idInvoiceItemState], 
+    [InvoiceItemState].[idInvoiceItem] AS [idInvoiceItem], 
+    [InvoiceItemState].[StateValue] AS [StateValue], 
+    [InvoiceItemState].[CreateDate] AS [CreateDate], 
+    [InvoiceItemState].[ApplicationName] AS [ApplicationName], 
+    [InvoiceItemState].[idUser] AS [idUser]
+    FROM [dbo].[InvoiceItemState] AS [InvoiceItemState]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ListedProduct" EntityType="Self.ListedProduct" store:Type="Tables" store:Schema="supplier">
+            <DefiningQuery>SELECT 
+    [ListedProduct].[idProduct] AS [idProduct], 
+    [ListedProduct].[idListedCompany] AS [idListedCompany], 
+    [ListedProduct].[idProductOfCompany] AS [idProductOfCompany]
+    FROM [supplier].[ListedProduct] AS [ListedProduct]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wFirms" EntityType="Self.wFirms" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wFirms].[idFirm] AS [idFirm], 
+    [wFirms].[Name] AS [Name], 
+    [wFirms].[Ic] AS [Ic], 
+    [wFirms].[Dic] AS [Dic], 
+    [wFirms].[Adress] AS [Adress], 
+    [wFirms].[ZipCode] AS [ZipCode], 
+    [wFirms].[City] AS [City], 
+    [wFirms].[idFirmCategory] AS [idFirmCategory], 
+    [wFirms].[Category] AS [Category]
+    FROM [dbo].[wFirms] AS [wFirms]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wInvoices" EntityType="Self.wInvoices" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wInvoices].[idInvoice] AS [idInvoice], 
+    [wInvoices].[idOrder] AS [idOrder], 
+    [wInvoices].[idFirm] AS [idFirm], 
+    [wInvoices].[MyNumber] AS [MyNumber], 
+    [wInvoices].[HisNumber] AS [HisNumber], 
+    [wInvoices].[idUser] AS [idUser], 
+    [wInvoices].[InsertDate] AS [InsertDate], 
+    [wInvoices].[Price] AS [Price], 
+    [wInvoices].[Vat] AS [Vat], 
+    [wInvoices].[PriceFull] AS [PriceFull], 
+    [wInvoices].[NrItems] AS [NrItems], 
+    [wInvoices].[DateDUZP] AS [DateDUZP], 
+    [wInvoices].[FirmName] AS [FirmName], 
+    [wInvoices].[FirmIc] AS [FirmIc], 
+    [wInvoices].[FirmDic] AS [FirmDic], 
+    [wInvoices].[FirmAddress] AS [FirmAddress], 
+    [wInvoices].[FirmZipCode] AS [FirmZipCode], 
+    [wInvoices].[FirmCity] AS [FirmCity], 
+    [wInvoices].[FullName] AS [FullName], 
+    [wInvoices].[ScanPDFsAll] AS [ScanPDFsAll], 
+    [wInvoices].[StateValue] AS [StateValue], 
+    [wInvoices].[StateValueDescription] AS [StateValueDescription]
+    FROM [dbo].[wInvoices] AS [wInvoices]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wItems" EntityType="Self.wItems" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wItems].[idInvoiceItem] AS [idInvoiceItem], 
+    [wItems].[idInvoice] AS [idInvoice], 
+    [wItems].[InvoiceOrder] AS [InvoiceOrder], 
+    [wItems].[ScanIncrement] AS [ScanIncrement], 
+    [wItems].[ItemName] AS [ItemName], 
+    [wItems].[BasePrice] AS [BasePrice], 
+    [wItems].[Quantity] AS [Quantity], 
+    [wItems].[Price] AS [Price], 
+    [wItems].[idUnit] AS [idUnit], 
+    [wItems].[UnitShort] AS [UnitShort], 
+    [wItems].[UnitFull] AS [UnitFull], 
+    [wItems].[idFirm] AS [idFirm], 
+    [wItems].[Ic] AS [Ic], 
+    [wItems].[Dic] AS [Dic], 
+    [wItems].[FirmName] AS [FirmName], 
+    [wItems].[BasePriceBezDPH] AS [BasePriceBezDPH], 
+    [wItems].[PriceBezDPH] AS [PriceBezDPH], 
+    [wItems].[idSazbaDPH] AS [idSazbaDPH]
+    FROM [dbo].[wItems] AS [wItems]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wOrders" EntityType="Self.wOrders" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wOrders].[Ic] AS [Ic], 
+    [wOrders].[Dic] AS [Dic], 
+    [wOrders].[Adress] AS [Adress], 
+    [wOrders].[ZipCode] AS [ZipCode], 
+    [wOrders].[City] AS [City], 
+    [wOrders].[idOrder] AS [idOrder], 
+    [wOrders].[OrderDate] AS [OrderDate], 
+    [wOrders].[idFirm] AS [idFirm], 
+    [wOrders].[SCANPath] AS [SCANPath], 
+    [wOrders].[NrSCAN] AS [NrSCAN], 
+    [wOrders].[NrInvoices] AS [NrInvoices], 
+    [wOrders].[idUser] AS [idUser], 
+    [wOrders].[CreateDate] AS [CreateDate], 
+    [wOrders].[UserFullName] AS [UserFullName], 
+    [wOrders].[OrderName] AS [OrderName], 
+    [wOrders].[FirmName] AS [FirmName], 
+    [wOrders].[MaxStateValue] AS [MaxStateValue], 
+    [wOrders].[StateValueDescription] AS [StateValueDescription], 
+    [wOrders].[SCANPrefix] AS [SCANPrefix], 
+    [wOrders].[CountInvoices] AS [CountInvoices], 
+    [wOrders].[ExpectedItems] AS [ExpectedItems], 
+    [wOrders].[ExpectedPrice] AS [ExpectedPrice], 
+    [wOrders].[CountItems] AS [CountItems], 
+    [wOrders].[PriceItems] AS [PriceItems]
+    FROM [dbo].[wOrders] AS [wOrders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wPair" EntityType="Self.wPair" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wPair].[idInvoiceItem] AS [idInvoiceItem], 
+    [wPair].[idInvoice] AS [idInvoice], 
+    [wPair].[InvoiceOrder] AS [InvoiceOrder], 
+    [wPair].[ScanIncrement] AS [ScanIncrement], 
+    [wPair].[ItemName] AS [ItemName], 
+    [wPair].[BasePrice] AS [BasePrice], 
+    [wPair].[Quantity] AS [Quantity], 
+    [wPair].[Price] AS [Price], 
+    [wPair].[idUnit] AS [idUnit], 
+    [wPair].[UnitShort] AS [UnitShort], 
+    [wPair].[UnitFull] AS [UnitFull], 
+    [wPair].[idFirm] AS [idFirm], 
+    [wPair].[Ic] AS [Ic], 
+    [wPair].[Dic] AS [Dic], 
+    [wPair].[FirmName] AS [FirmName], 
+    [wPair].[BasePriceBezDPH] AS [BasePriceBezDPH], 
+    [wPair].[PriceBezDPH] AS [PriceBezDPH], 
+    [wPair].[idSazbaDPH] AS [idSazbaDPH], 
+    [wPair].[DateDUZP] AS [DateDUZP], 
+    [wPair].[idOrder] AS [idOrder], 
+    [wPair].[InvoiceWeek] AS [InvoiceWeek], 
+    [wPair].[idPair] AS [idPair], 
+    [wPair].[idProduct] AS [idProduct], 
+    [wPair].[PairPrice] AS [PairPrice], 
+    [wPair].[DatePairPrice] AS [DatePairPrice], 
+    [wPair].[PairWeek] AS [PairWeek], 
+    [wPair].[idPairType] AS [idPairType], 
+    [wPair].[PairType] AS [PairType], 
+    [wPair].[idUser] AS [idUser], 
+    [wPair].[DatePairing] AS [DatePairing], 
+    [wPair].[Product] AS [Product], 
+    [wPair].[Rozdil] AS [Rozdil]
+    FROM [dbo].[wPair] AS [wPair]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wScanPDFs" EntityType="Self.wScanPDFs" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wScanPDFs].[idScan] AS [idScan], 
+    [wScanPDFs].[idInvoice] AS [idInvoice], 
+    [wScanPDFs].[idOrder] AS [idOrder], 
+    [wScanPDFs].[ScanIncrement] AS [ScanIncrement], 
+    [wScanPDFs].[MyNumber] AS [MyNumber], 
+    [wScanPDFs].[HisNumber] AS [HisNumber], 
+    [wScanPDFs].[Price] AS [Price], 
+    [wScanPDFs].[NrItems] AS [NrItems], 
+    [wScanPDFs].[DateDUZP] AS [DateDUZP], 
+    [wScanPDFs].[FirmName] AS [FirmName]
+    FROM [dbo].[wScanPDFs] AS [wScanPDFs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wProductTable" EntityType="Self.wProductTable" store:Type="Views" store:Schema="supplier">
+            <DefiningQuery>SELECT 
+    [wProductTable].[Druh] AS [Druh], 
+    [wProductTable].[Komodita] AS [Komodita], 
+    [wProductTable].[Podkomodita] AS [Podkomodita], 
+    [wProductTable].[idProduct] AS [idProduct], 
+    [wProductTable].[Product] AS [Product], 
+    [wProductTable].[Priznak] AS [Priznak], 
+    [wProductTable].[Quantity] AS [Quantity], 
+    [wProductTable].[Mark] AS [Mark], 
+    [wProductTable].[UnitShort] AS [UnitShort], 
+    [wProductTable].[UnitName] AS [UnitName], 
+    [wProductTable].[idUnit] AS [idUnit], 
+    [wProductTable].[idKomodita] AS [idKomodita], 
+    [wProductTable].[idPriznak] AS [idPriznak], 
+    [wProductTable].[idDruh] AS [idDruh], 
+    [wProductTable].[idPodkomodita] AS [idPodkomodita]
+    FROM [supplier].[wProductTable] AS [wProductTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wWeekMinPricesTemp" EntityType="Self.wWeekMinPricesTemp" store:Type="Views" store:Schema="supplier">
+            <DefiningQuery>SELECT 
+    [wWeekMinPricesTemp].[idProduct] AS [idProduct], 
+    [wWeekMinPricesTemp].[44] AS [44], 
+    [wWeekMinPricesTemp].[45] AS [45], 
+    [wWeekMinPricesTemp].[46] AS [46], 
+    [wWeekMinPricesTemp].[47] AS [47], 
+    [wWeekMinPricesTemp].[48] AS [48], 
+    [wWeekMinPricesTemp].[49] AS [49], 
+    [wWeekMinPricesTemp].[50] AS [50]
+    FROM [supplier].[wWeekMinPricesTemp] AS [wWeekMinPricesTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wWeekPrices" EntityType="Self.wWeekPrices" store:Type="Views" store:Schema="supplier">
+            <DefiningQuery>SELECT 
+    [wWeekPrices].[idProduct] AS [idProduct], 
+    [wWeekPrices].[42] AS [42], 
+    [wWeekPrices].[43] AS [43], 
+    [wWeekPrices].[44] AS [44], 
+    [wWeekPrices].[45] AS [45], 
+    [wWeekPrices].[46] AS [46], 
+    [wWeekPrices].[47] AS [47], 
+    [wWeekPrices].[48] AS [48], 
+    [wWeekPrices].[49] AS [49], 
+    [wWeekPrices].[50] AS [50]
+    FROM [supplier].[wWeekPrices] AS [wWeekPrices]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wWeekPricesTemp" EntityType="Self.wWeekPricesTemp" store:Type="Views" store:Schema="supplier">
+            <DefiningQuery>SELECT 
+    [wWeekPricesTemp].[idProduct] AS [idProduct], 
+    [wWeekPricesTemp].[44] AS [44], 
+    [wWeekPricesTemp].[45] AS [45], 
+    [wWeekPricesTemp].[46] AS [46], 
+    [wWeekPricesTemp].[47] AS [47], 
+    [wWeekPricesTemp].[48] AS [48], 
+    [wWeekPricesTemp].[49] AS [49], 
+    [wWeekPricesTemp].[50] AS [50]
+    FROM [supplier].[wWeekPricesTemp] AS [wWeekPricesTemp]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="alextradeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="alextradeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FirmCategory" EntityType="alextradeModel.FirmCategory" />
+          <EntitySet Name="Firms" EntityType="alextradeModel.Firms" />
+          <EntitySet Name="InvoiceItems" EntityType="alextradeModel.InvoiceItems" />
+          <EntitySet Name="Invoices" EntityType="alextradeModel.Invoices" />
+          <EntitySet Name="InvoiceState" EntityType="alextradeModel.InvoiceState" />
+          <EntitySet Name="MainSetting" EntityType="alextradeModel.MainSetting" />
+          <EntitySet Name="Orders" EntityType="alextradeModel.Orders" />
+          <EntitySet Name="OrderState" EntityType="alextradeModel.OrderState" />
+          <EntitySet Name="Pair" EntityType="alextradeModel.Pair" />
+          <EntitySet Name="PairType" EntityType="alextradeModel.PairType" />
+          <EntitySet Name="SazbaDPH" EntityType="alextradeModel.SazbaDPH" />
+          <EntitySet Name="ScanPDFs" EntityType="alextradeModel.ScanPDFs" />
+          <EntitySet Name="State" EntityType="alextradeModel.State" />
+          <EntitySet Name="Unity" EntityType="alextradeModel.Unity" />
+          <EntitySet Name="Users" EntityType="alextradeModel.Users" />
+          <EntitySet Name="UserSetting" EntityType="alextradeModel.UserSetting" />
+          <EntitySet Name="DayPrices" EntityType="alextradeModel.DayPrices" />
+          <EntitySet Name="Druh" EntityType="alextradeModel.Druh" />
+          <EntitySet Name="Komodita" EntityType="alextradeModel.Komodita" />
+          <EntitySet Name="ListedCompany" EntityType="alextradeModel.ListedCompany" />
+          <EntitySet Name="PodKomodita" EntityType="alextradeModel.PodKomodita" />
+          <EntitySet Name="Priznak" EntityType="alextradeModel.Priznak" />
+          <EntitySet Name="History" EntityType="alextradeModel.History" />
+          <EntitySet Name="InvoiceItemState" EntityType="alextradeModel.InvoiceItemState" />
+          <EntitySet Name="ListedProduct" EntityType="alextradeModel.ListedProduct" />
+          <EntitySet Name="wFirms" EntityType="alextradeModel.wFirms" />
+          <EntitySet Name="wInvoices" EntityType="alextradeModel.wInvoices" />
+          <EntitySet Name="wItems" EntityType="alextradeModel.wItems" />
+          <EntitySet Name="wOrders" EntityType="alextradeModel.wOrders" />
+          <EntitySet Name="wPair" EntityType="alextradeModel.wPair" />
+          <EntitySet Name="wScanPDFs" EntityType="alextradeModel.wScanPDFs" />
+          <EntitySet Name="wProductTable" EntityType="alextradeModel.wProductTable" />
+          <EntitySet Name="wWeekMinPricesTemp" EntityType="alextradeModel.wWeekMinPricesTemp" />
+          <EntitySet Name="wWeekPrices" EntityType="alextradeModel.wWeekPrices" />
+          <EntitySet Name="wWeekPricesTemp" EntityType="alextradeModel.wWeekPricesTemp" />
+          <EntitySet Name="Product" EntityType="alextradeModel.Product" />
+        </EntityContainer>
+        <EntityType Name="FirmCategory">
+          <Key>
+            <PropertyRef Name="idFirmCategory" />
+          </Key>
+          <Property Name="idFirmCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="idMainFirmCategory" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Firms">
+          <Key>
+            <PropertyRef Name="idFirm" />
+          </Key>
+          <Property Name="idFirm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idFirmCategory" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="InvoiceOrder" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BasePrice" Type="Double" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="idUnit" Type="Int32" />
+          <Property Name="idSazbaDPH" Type="Int32" />
+          <Property Name="BasePriceBezDPH" Type="Double" />
+          <Property Name="PriceBezDPH" Type="Double" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="MyNumber" Type="Int32" />
+          <Property Name="HisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Vat" Type="Double" />
+          <Property Name="PriceFull" Type="Double" />
+          <Property Name="NrItems" Type="Int32" />
+          <Property Name="DateDUZP" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="InvoiceState">
+          <Key>
+            <PropertyRef Name="idInvoiceState" />
+          </Key>
+          <Property Name="idInvoiceState" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="StateValue" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MainSetting">
+          <Key>
+            <PropertyRef Name="idMainSetting" />
+          </Key>
+          <Property Name="idMainSetting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="iValue" Type="Int32" />
+          <Property Name="dValue" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SCANPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SCANPrefix" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NrSCAN" Type="Int32" />
+          <Property Name="NrInvoices" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="idOrderState" />
+          </Key>
+          <Property Name="idOrderState" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="StateValue" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Pair">
+          <Key>
+            <PropertyRef Name="idPair" />
+          </Key>
+          <Property Name="idPair" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInvoiceItem" Type="Int32" />
+          <Property Name="idProduct" Type="Int32" />
+          <Property Name="DatePairPrice" Type="DateTime" Precision="3" />
+          <Property Name="PairPrice" Type="Double" />
+          <Property Name="idPairType" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="DatePairing" Type="DateTime" Precision="3" />
+          <Property Name="PairWeek" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PairType">
+          <Key>
+            <PropertyRef Name="idPairType" />
+          </Key>
+          <Property Name="idPairType" Type="Int32" Nullable="false" />
+          <Property Name="PairType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SazbaDPH">
+          <Key>
+            <PropertyRef Name="idSazbaDPH" />
+          </Key>
+          <Property Name="idSazbaDPH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SazbaDPH1" Type="Double" />
+          <Property Name="SazbaDPHText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SazbaDPHTextShort" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="idState" />
+          </Key>
+          <Property Name="idState" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateType" Type="Int32" />
+          <Property Name="StateValue" Type="Int32" />
+          <Property Name="StateTypeDescription" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StateValueDescription" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="StateValueInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Unity">
+          <Key>
+            <PropertyRef Name="idUnit" />
+          </Key>
+          <Property Name="idUnit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitShort" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isEdit" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isLogin" Type="Boolean" />
+          <Property Name="isInvoicing" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserSetting">
+          <Key>
+            <PropertyRef Name="idUserSetting" />
+          </Key>
+          <Property Name="idUserSetting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DayPrices">
+          <Key>
+            <PropertyRef Name="idDayPrices" />
+          </Key>
+          <Property Name="idDayPrices" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="idListedCompany" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="DatePrice" Type="DateTime" Precision="3" />
+          <Property Name="WeekPrice" Type="Int32" />
+          <Property Name="MonthPrice" Type="Int32" />
+          <Property Name="YearPrice" Type="Int32" />
+          <Property Name="DayPrice" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Druh">
+          <Key>
+            <PropertyRef Name="idDruh" />
+          </Key>
+          <Property Name="idDruh" Type="Int32" Nullable="false" />
+          <Property Name="Druh1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Komodita">
+          <Key>
+            <PropertyRef Name="idKomodita" />
+          </Key>
+          <Property Name="idKomodita" Type="Int32" Nullable="false" />
+          <Property Name="idDruh" Type="Int32" />
+          <Property Name="Komodita1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ListedCompany">
+          <Key>
+            <PropertyRef Name="idListedCompany" />
+          </Key>
+          <Property Name="idListedCompany" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PodKomodita">
+          <Key>
+            <PropertyRef Name="idPodkomodita" />
+          </Key>
+          <Property Name="idPodkomodita" Type="Int32" Nullable="false" />
+          <Property Name="Podkomodita1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Priznak">
+          <Key>
+            <PropertyRef Name="idPriznak" />
+          </Key>
+          <Property Name="idPriznak" Type="Int32" Nullable="false" />
+          <Property Name="Priznak1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="idHistory" />
+          </Key>
+          <Property Name="idHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Poradi" Type="Int32" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Doba" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InvoiceItemState">
+          <Key>
+            <PropertyRef Name="idInvoiceItemState" />
+          </Key>
+          <Property Name="idInvoiceItemState" Type="Int32" Nullable="false" />
+          <Property Name="idInvoiceItem" Type="Int32" />
+          <Property Name="StateValue" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ListedProduct">
+          <Key>
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="idListedCompany" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="idListedCompany" Type="Int32" Nullable="false" />
+          <Property Name="idProductOfCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wFirms">
+          <Key>
+            <PropertyRef Name="idFirm" />
+          </Key>
+          <Property Name="idFirm" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idFirmCategory" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wInvoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="Int32" Nullable="false" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="MyNumber" Type="Int32" />
+          <Property Name="HisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Vat" Type="Double" />
+          <Property Name="PriceFull" Type="Double" />
+          <Property Name="NrItems" Type="Int32" />
+          <Property Name="DateDUZP" Type="DateTime" Precision="0" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirmIc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmDic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="FirmCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ScanPDFsAll" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StateValue" Type="Int32" />
+          <Property Name="StateValueDescription" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="Int32" Nullable="false" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="InvoiceOrder" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BasePrice" Type="Double" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="idUnit" Type="Int32" />
+          <Property Name="UnitShort" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UnitFull" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasePriceBezDPH" Type="Double" />
+          <Property Name="PriceBezDPH" Type="Double" />
+          <Property Name="idSazbaDPH" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wOrders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idOrder" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="SCANPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NrSCAN" Type="Int32" />
+          <Property Name="NrInvoices" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaxStateValue" Type="Int32" />
+          <Property Name="StateValueDescription" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SCANPrefix" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountInvoices" Type="Int32" />
+          <Property Name="ExpectedItems" Type="Int32" />
+          <Property Name="ExpectedPrice" Type="Double" />
+          <Property Name="CountItems" Type="Int32" />
+          <Property Name="PriceItems" Type="Double" />
+        </EntityType>
+        <EntityType Name="wPair">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="Int32" Nullable="false" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="InvoiceOrder" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BasePrice" Type="Double" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="idUnit" Type="Int32" />
+          <Property Name="UnitShort" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UnitFull" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+          <Property Name="idFirm" Type="Int32" />
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasePriceBezDPH" Type="Double" />
+          <Property Name="PriceBezDPH" Type="Double" />
+          <Property Name="idSazbaDPH" Type="Int32" />
+          <Property Name="DateDUZP" Type="DateTime" Precision="0" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="InvoiceWeek" Type="Int32" />
+          <Property Name="idPair" Type="Int32" />
+          <Property Name="idProduct" Type="Int32" />
+          <Property Name="PairPrice" Type="Double" />
+          <Property Name="DatePairPrice" Type="DateTime" Precision="3" />
+          <Property Name="PairWeek" Type="Int32" />
+          <Property Name="idPairType" Type="Int32" />
+          <Property Name="PairType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="DatePairing" Type="DateTime" Precision="3" />
+          <Property Name="Product" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Rozdil" Type="Double" />
+        </EntityType>
+        <EntityType Name="wScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="Int32" Nullable="false" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+          <Property Name="MyNumber" Type="Int32" />
+          <Property Name="HisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="NrItems" Type="Int32" />
+          <Property Name="DateDUZP" Type="DateTime" Precision="0" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wProductTable">
+          <Key>
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="idUnit" />
+          </Key>
+          <Property Name="Druh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Komodita" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Podkomodita" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Priznak" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Mark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UnitShort" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idUnit" Type="Int32" Nullable="false" />
+          <Property Name="idKomodita" Type="Int32" />
+          <Property Name="idPriznak" Type="Int32" />
+          <Property Name="idDruh" Type="Int32" />
+          <Property Name="idPodkomodita" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wWeekMinPricesTemp">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="C44" Type="Double" />
+          <Property Name="C45" Type="Double" />
+          <Property Name="C46" Type="Double" />
+          <Property Name="C47" Type="Double" />
+          <Property Name="C48" Type="Double" />
+          <Property Name="C49" Type="Double" />
+          <Property Name="C50" Type="Double" />
+        </EntityType>
+        <EntityType Name="wWeekPrices">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="C42" Type="Double" />
+          <Property Name="C43" Type="Double" />
+          <Property Name="C44" Type="Double" />
+          <Property Name="C45" Type="Double" />
+          <Property Name="C46" Type="Double" />
+          <Property Name="C47" Type="Double" />
+          <Property Name="C48" Type="Double" />
+          <Property Name="C49" Type="Double" />
+          <Property Name="C50" Type="Double" />
+        </EntityType>
+        <EntityType Name="wWeekPricesTemp">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="C44" Type="Double" />
+          <Property Name="C45" Type="Double" />
+          <Property Name="C46" Type="Double" />
+          <Property Name="C47" Type="Double" />
+          <Property Name="C48" Type="Double" />
+          <Property Name="C49" Type="Double" />
+          <Property Name="C50" Type="Double" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idKomodita" Type="Int32" />
+          <Property Name="idPodkomodita" Type="Int32" />
+          <Property Name="idPriznak" Type="Int32" />
+          <Property Name="Product1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="idUnit" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="alextradeModelStoreContainer" CdmEntityContainer="alextradeEntities">
+          <EntitySetMapping Name="FirmCategory">
+            <EntityTypeMapping TypeName="alextradeModel.FirmCategory">
+              <MappingFragment StoreEntitySet="FirmCategory">
+                <ScalarProperty Name="idMainFirmCategory" ColumnName="idMainFirmCategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="idFirmCategory" ColumnName="idFirmCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firms">
+            <EntityTypeMapping TypeName="alextradeModel.Firms">
+              <MappingFragment StoreEntitySet="Firms">
+                <ScalarProperty Name="idFirmCategory" ColumnName="idFirmCategory" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="alextradeModel.InvoiceItems">
+              <MappingFragment StoreEntitySet="InvoiceItems">
+                <ScalarProperty Name="PriceBezDPH" ColumnName="PriceBezDPH" />
+                <ScalarProperty Name="BasePriceBezDPH" ColumnName="BasePriceBezDPH" />
+                <ScalarProperty Name="idSazbaDPH" ColumnName="idSazbaDPH" />
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="InvoiceOrder" ColumnName="InvoiceOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="alextradeModel.Invoices">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="DateDUZP" ColumnName="DateDUZP" />
+                <ScalarProperty Name="NrItems" ColumnName="NrItems" />
+                <ScalarProperty Name="PriceFull" ColumnName="PriceFull" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="HisNumber" ColumnName="HisNumber" />
+                <ScalarProperty Name="MyNumber" ColumnName="MyNumber" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceState">
+            <EntityTypeMapping TypeName="alextradeModel.InvoiceState">
+              <MappingFragment StoreEntitySet="InvoiceState">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="StateValue" ColumnName="StateValue" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idInvoiceState" ColumnName="idInvoiceState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainSetting">
+            <EntityTypeMapping TypeName="alextradeModel.MainSetting">
+              <MappingFragment StoreEntitySet="MainSetting">
+                <ScalarProperty Name="dValue" ColumnName="dValue" />
+                <ScalarProperty Name="iValue" ColumnName="iValue" />
+                <ScalarProperty Name="sValue" ColumnName="sValue" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idMainSetting" ColumnName="idMainSetting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="alextradeModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="NrInvoices" ColumnName="NrInvoices" />
+                <ScalarProperty Name="NrSCAN" ColumnName="NrSCAN" />
+                <ScalarProperty Name="SCANPrefix" ColumnName="SCANPrefix" />
+                <ScalarProperty Name="SCANPath" ColumnName="SCANPath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderState">
+            <EntityTypeMapping TypeName="alextradeModel.OrderState">
+              <MappingFragment StoreEntitySet="OrderState">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="StateValue" ColumnName="StateValue" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idOrderState" ColumnName="idOrderState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pair">
+            <EntityTypeMapping TypeName="alextradeModel.Pair">
+              <MappingFragment StoreEntitySet="Pair">
+                <ScalarProperty Name="PairWeek" ColumnName="PairWeek" />
+                <ScalarProperty Name="DatePairing" ColumnName="DatePairing" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idPairType" ColumnName="idPairType" />
+                <ScalarProperty Name="PairPrice" ColumnName="PairPrice" />
+                <ScalarProperty Name="DatePairPrice" ColumnName="DatePairPrice" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+                <ScalarProperty Name="idPair" ColumnName="idPair" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PairType">
+            <EntityTypeMapping TypeName="alextradeModel.PairType">
+              <MappingFragment StoreEntitySet="PairType">
+                <ScalarProperty Name="PairType1" ColumnName="PairType" />
+                <ScalarProperty Name="idPairType" ColumnName="idPairType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SazbaDPH">
+            <EntityTypeMapping TypeName="alextradeModel.SazbaDPH">
+              <MappingFragment StoreEntitySet="SazbaDPH">
+                <ScalarProperty Name="SazbaDPHTextShort" ColumnName="SazbaDPHTextShort" />
+                <ScalarProperty Name="SazbaDPHText" ColumnName="SazbaDPHText" />
+                <ScalarProperty Name="SazbaDPH1" ColumnName="SazbaDPH" />
+                <ScalarProperty Name="idSazbaDPH" ColumnName="idSazbaDPH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScanPDFs">
+            <EntityTypeMapping TypeName="alextradeModel.ScanPDFs">
+              <MappingFragment StoreEntitySet="ScanPDFs">
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idScan" ColumnName="idScan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State">
+            <EntityTypeMapping TypeName="alextradeModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateValueInfo" ColumnName="StateValueInfo" />
+                <ScalarProperty Name="StateValueDescription" ColumnName="StateValueDescription" />
+                <ScalarProperty Name="StateTypeDescription" ColumnName="StateTypeDescription" />
+                <ScalarProperty Name="StateValue" ColumnName="StateValue" />
+                <ScalarProperty Name="StateType" ColumnName="StateType" />
+                <ScalarProperty Name="idState" ColumnName="idState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unity">
+            <EntityTypeMapping TypeName="alextradeModel.Unity">
+              <MappingFragment StoreEntitySet="Unity">
+                <ScalarProperty Name="isEdit" ColumnName="isEdit" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitShort" ColumnName="UnitShort" />
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="alextradeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="isInvoicing" ColumnName="isInvoicing" />
+                <ScalarProperty Name="isLogin" ColumnName="isLogin" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSetting">
+            <EntityTypeMapping TypeName="alextradeModel.UserSetting">
+              <MappingFragment StoreEntitySet="UserSetting">
+                <ScalarProperty Name="SValue" ColumnName="SValue" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idUserSetting" ColumnName="idUserSetting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayPrices">
+            <EntityTypeMapping TypeName="alextradeModel.DayPrices">
+              <MappingFragment StoreEntitySet="DayPrices">
+                <ScalarProperty Name="DayPrice" ColumnName="DayPrice" />
+                <ScalarProperty Name="YearPrice" ColumnName="YearPrice" />
+                <ScalarProperty Name="MonthPrice" ColumnName="MonthPrice" />
+                <ScalarProperty Name="WeekPrice" ColumnName="WeekPrice" />
+                <ScalarProperty Name="DatePrice" ColumnName="DatePrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="idListedCompany" ColumnName="idListedCompany" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idDayPrices" ColumnName="idDayPrices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Druh">
+            <EntityTypeMapping TypeName="alextradeModel.Druh">
+              <MappingFragment StoreEntitySet="Druh">
+                <ScalarProperty Name="Druh1" ColumnName="Druh" />
+                <ScalarProperty Name="idDruh" ColumnName="idDruh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komodita">
+            <EntityTypeMapping TypeName="alextradeModel.Komodita">
+              <MappingFragment StoreEntitySet="Komodita">
+                <ScalarProperty Name="Komodita1" ColumnName="Komodita" />
+                <ScalarProperty Name="idDruh" ColumnName="idDruh" />
+                <ScalarProperty Name="idKomodita" ColumnName="idKomodita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListedCompany">
+            <EntityTypeMapping TypeName="alextradeModel.ListedCompany">
+              <MappingFragment StoreEntitySet="ListedCompany">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idListedCompany" ColumnName="idListedCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PodKomodita">
+            <EntityTypeMapping TypeName="alextradeModel.PodKomodita">
+              <MappingFragment StoreEntitySet="PodKomodita">
+                <ScalarProperty Name="Podkomodita1" ColumnName="Podkomodita" />
+                <ScalarProperty Name="idPodkomodita" ColumnName="idPodkomodita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priznak">
+            <EntityTypeMapping TypeName="alextradeModel.Priznak">
+              <MappingFragment StoreEntitySet="Priznak">
+                <ScalarProperty Name="Priznak1" ColumnName="Priznak" />
+                <ScalarProperty Name="idPriznak" ColumnName="idPriznak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="alextradeModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Doba" ColumnName="Doba" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Poradi" ColumnName="Poradi" />
+                <ScalarProperty Name="idHistory" ColumnName="idHistory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItemState">
+            <EntityTypeMapping TypeName="alextradeModel.InvoiceItemState">
+              <MappingFragment StoreEntitySet="InvoiceItemState">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="StateValue" ColumnName="StateValue" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+                <ScalarProperty Name="idInvoiceItemState" ColumnName="idInvoiceItemState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListedProduct">
+            <EntityTypeMapping TypeName="alextradeModel.ListedProduct">
+              <MappingFragment StoreEntitySet="ListedProduct">
+                <ScalarProperty Name="idProductOfCompany" ColumnName="idProductOfCompany" />
+                <ScalarProperty Name="idListedCompany" ColumnName="idListedCompany" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wFirms">
+            <EntityTypeMapping TypeName="alextradeModel.wFirms">
+              <MappingFragment StoreEntitySet="wFirms">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="idFirmCategory" ColumnName="idFirmCategory" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wInvoices">
+            <EntityTypeMapping TypeName="alextradeModel.wInvoices">
+              <MappingFragment StoreEntitySet="wInvoices">
+                <ScalarProperty Name="StateValueDescription" ColumnName="StateValueDescription" />
+                <ScalarProperty Name="StateValue" ColumnName="StateValue" />
+                <ScalarProperty Name="ScanPDFsAll" ColumnName="ScanPDFsAll" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FirmCity" ColumnName="FirmCity" />
+                <ScalarProperty Name="FirmZipCode" ColumnName="FirmZipCode" />
+                <ScalarProperty Name="FirmAddress" ColumnName="FirmAddress" />
+                <ScalarProperty Name="FirmDic" ColumnName="FirmDic" />
+                <ScalarProperty Name="FirmIc" ColumnName="FirmIc" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="DateDUZP" ColumnName="DateDUZP" />
+                <ScalarProperty Name="NrItems" ColumnName="NrItems" />
+                <ScalarProperty Name="PriceFull" ColumnName="PriceFull" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="HisNumber" ColumnName="HisNumber" />
+                <ScalarProperty Name="MyNumber" ColumnName="MyNumber" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wItems">
+            <EntityTypeMapping TypeName="alextradeModel.wItems">
+              <MappingFragment StoreEntitySet="wItems">
+                <ScalarProperty Name="idSazbaDPH" ColumnName="idSazbaDPH" />
+                <ScalarProperty Name="PriceBezDPH" ColumnName="PriceBezDPH" />
+                <ScalarProperty Name="BasePriceBezDPH" ColumnName="BasePriceBezDPH" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="UnitFull" ColumnName="UnitFull" />
+                <ScalarProperty Name="UnitShort" ColumnName="UnitShort" />
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="InvoiceOrder" ColumnName="InvoiceOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wOrders">
+            <EntityTypeMapping TypeName="alextradeModel.wOrders">
+              <MappingFragment StoreEntitySet="wOrders">
+                <ScalarProperty Name="PriceItems" ColumnName="PriceItems" />
+                <ScalarProperty Name="CountItems" ColumnName="CountItems" />
+                <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+                <ScalarProperty Name="ExpectedItems" ColumnName="ExpectedItems" />
+                <ScalarProperty Name="CountInvoices" ColumnName="CountInvoices" />
+                <ScalarProperty Name="SCANPrefix" ColumnName="SCANPrefix" />
+                <ScalarProperty Name="StateValueDescription" ColumnName="StateValueDescription" />
+                <ScalarProperty Name="MaxStateValue" ColumnName="MaxStateValue" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="NrInvoices" ColumnName="NrInvoices" />
+                <ScalarProperty Name="NrSCAN" ColumnName="NrSCAN" />
+                <ScalarProperty Name="SCANPath" ColumnName="SCANPath" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wPair">
+            <EntityTypeMapping TypeName="alextradeModel.wPair">
+              <MappingFragment StoreEntitySet="wPair">
+                <ScalarProperty Name="Rozdil" ColumnName="Rozdil" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="DatePairing" ColumnName="DatePairing" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="PairType" ColumnName="PairType" />
+                <ScalarProperty Name="idPairType" ColumnName="idPairType" />
+                <ScalarProperty Name="PairWeek" ColumnName="PairWeek" />
+                <ScalarProperty Name="DatePairPrice" ColumnName="DatePairPrice" />
+                <ScalarProperty Name="PairPrice" ColumnName="PairPrice" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idPair" ColumnName="idPair" />
+                <ScalarProperty Name="InvoiceWeek" ColumnName="InvoiceWeek" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="DateDUZP" ColumnName="DateDUZP" />
+                <ScalarProperty Name="idSazbaDPH" ColumnName="idSazbaDPH" />
+                <ScalarProperty Name="PriceBezDPH" ColumnName="PriceBezDPH" />
+                <ScalarProperty Name="BasePriceBezDPH" ColumnName="BasePriceBezDPH" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+                <ScalarProperty Name="idFirm" ColumnName="idFirm" />
+                <ScalarProperty Name="UnitFull" ColumnName="UnitFull" />
+                <ScalarProperty Name="UnitShort" ColumnName="UnitShort" />
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="InvoiceOrder" ColumnName="InvoiceOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wScanPDFs">
+            <EntityTypeMapping TypeName="alextradeModel.wScanPDFs">
+              <MappingFragment StoreEntitySet="wScanPDFs">
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="DateDUZP" ColumnName="DateDUZP" />
+                <ScalarProperty Name="NrItems" ColumnName="NrItems" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="HisNumber" ColumnName="HisNumber" />
+                <ScalarProperty Name="MyNumber" ColumnName="MyNumber" />
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idScan" ColumnName="idScan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wProductTable">
+            <EntityTypeMapping TypeName="alextradeModel.wProductTable">
+              <MappingFragment StoreEntitySet="wProductTable">
+                <ScalarProperty Name="idPodkomodita" ColumnName="idPodkomodita" />
+                <ScalarProperty Name="idDruh" ColumnName="idDruh" />
+                <ScalarProperty Name="idPriznak" ColumnName="idPriznak" />
+                <ScalarProperty Name="idKomodita" ColumnName="idKomodita" />
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitShort" ColumnName="UnitShort" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Priznak" ColumnName="Priznak" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="Podkomodita" ColumnName="Podkomodita" />
+                <ScalarProperty Name="Komodita" ColumnName="Komodita" />
+                <ScalarProperty Name="Druh" ColumnName="Druh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wWeekMinPricesTemp">
+            <EntityTypeMapping TypeName="alextradeModel.wWeekMinPricesTemp">
+              <MappingFragment StoreEntitySet="wWeekMinPricesTemp">
+                <ScalarProperty Name="C50" ColumnName="50" />
+                <ScalarProperty Name="C49" ColumnName="49" />
+                <ScalarProperty Name="C48" ColumnName="48" />
+                <ScalarProperty Name="C47" ColumnName="47" />
+                <ScalarProperty Name="C46" ColumnName="46" />
+                <ScalarProperty Name="C45" ColumnName="45" />
+                <ScalarProperty Name="C44" ColumnName="44" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wWeekPrices">
+            <EntityTypeMapping TypeName="alextradeModel.wWeekPrices">
+              <MappingFragment StoreEntitySet="wWeekPrices">
+                <ScalarProperty Name="C50" ColumnName="50" />
+                <ScalarProperty Name="C49" ColumnName="49" />
+                <ScalarProperty Name="C48" ColumnName="48" />
+                <ScalarProperty Name="C47" ColumnName="47" />
+                <ScalarProperty Name="C46" ColumnName="46" />
+                <ScalarProperty Name="C45" ColumnName="45" />
+                <ScalarProperty Name="C44" ColumnName="44" />
+                <ScalarProperty Name="C43" ColumnName="43" />
+                <ScalarProperty Name="C42" ColumnName="42" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wWeekPricesTemp">
+            <EntityTypeMapping TypeName="alextradeModel.wWeekPricesTemp">
+              <MappingFragment StoreEntitySet="wWeekPricesTemp">
+                <ScalarProperty Name="C50" ColumnName="50" />
+                <ScalarProperty Name="C49" ColumnName="49" />
+                <ScalarProperty Name="C48" ColumnName="48" />
+                <ScalarProperty Name="C47" ColumnName="47" />
+                <ScalarProperty Name="C46" ColumnName="46" />
+                <ScalarProperty Name="C45" ColumnName="45" />
+                <ScalarProperty Name="C44" ColumnName="44" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="alextradeModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="idUnit" ColumnName="idUnit" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Product1" ColumnName="Product" />
+                <ScalarProperty Name="idPriznak" ColumnName="idPriznak" />
+                <ScalarProperty Name="idPodkomodita" ColumnName="idPodkomodita" />
+                <ScalarProperty Name="idKomodita" ColumnName="idKomodita" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

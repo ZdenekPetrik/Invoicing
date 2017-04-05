@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="alextradeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="float" />
+          <Property Name="PriceVat" Type="float" />
+          <Property Name="PriceFull" Type="float" />
+          <Property Name="idBaseValue" Type="int" />
+          <Property Name="Count" Type="float" />
+          <Property Name="BasePrice" Type="float" />
+          <Property Name="BaseVat" Type="float" />
+          <Property Name="BasePriceFull" Type="float" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idJob" Type="int" />
+          <Property Name="idSupplier" Type="int" />
+          <Property Name="MyNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="HisNumber" Type="varchar" MaxLength="20" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Vat" Type="float" />
+          <Property Name="PriceFull" Type="float" />
+          <Property Name="NrItems" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="idJob" />
+          </Key>
+          <Property Name="idJob" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobDate" Type="datetime" />
+          <Property Name="idZadavatel" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SCANPath" Type="nvarchar(max)" />
+          <Property Name="NrSCAN" Type="int" />
+          <Property Name="NrInvoices" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MainSetting">
+          <Key>
+            <PropertyRef Name="idMainSetting" />
+          </Key>
+          <Property Name="idMainSetting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sValue" Type="nvarchar(max)" />
+          <Property Name="iValue" Type="int" />
+          <Property Name="dValue" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInvoice" Type="int" />
+          <Property Name="idJobs" Type="int" />
+          <Property Name="ScanIncrement" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="idSupplier" />
+          </Key>
+          <Property Name="idSupplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Ic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Psc" Type="nvarchar" MaxLength="5" />
+          <Property Name="Mesto" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsNespolehlivyPlatce" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginPassword" Type="nvarchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="isLogin" Type="bit" />
+          <Property Name="isInvoicing" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="alextradeModelStoreContainer">
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainSetting" EntityType="Self.MainSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScanPDFs" EntityType="Self.ScanPDFs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="alextradeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="alextradeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InvoiceItems" EntityType="alextradeModel.InvoiceItems" />
+          <EntitySet Name="Invoices" EntityType="alextradeModel.Invoices" />
+          <EntitySet Name="Jobs" EntityType="alextradeModel.Jobs" />
+          <EntitySet Name="MainSetting" EntityType="alextradeModel.MainSetting" />
+          <EntitySet Name="ScanPDFs" EntityType="alextradeModel.ScanPDFs" />
+          <EntitySet Name="Suppliers" EntityType="alextradeModel.Suppliers" />
+          <EntitySet Name="Users" EntityType="alextradeModel.Users" />
+        </EntityContainer>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="idInvoiceItem" />
+          </Key>
+          <Property Name="idInvoiceItem" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="PriceVat" Type="Double" />
+          <Property Name="PriceFull" Type="Double" />
+          <Property Name="idBaseValue" Type="Int32" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="BasePrice" Type="Double" />
+          <Property Name="BaseVat" Type="Double" />
+          <Property Name="BasePriceFull" Type="Double" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+          </Key>
+          <Property Name="idInvoice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idJob" Type="Int32" />
+          <Property Name="idSupplier" Type="Int32" />
+          <Property Name="MyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Vat" Type="Double" />
+          <Property Name="PriceFull" Type="Double" />
+          <Property Name="NrItems" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="idJob" />
+          </Key>
+          <Property Name="idJob" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobDate" Type="DateTime" Precision="3" />
+          <Property Name="idZadavatel" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SCANPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NrSCAN" Type="Int32" />
+          <Property Name="NrInvoices" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MainSetting">
+          <Key>
+            <PropertyRef Name="idMainSetting" />
+          </Key>
+          <Property Name="idMainSetting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="iValue" Type="Int32" />
+          <Property Name="dValue" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ScanPDFs">
+          <Key>
+            <PropertyRef Name="idScan" />
+          </Key>
+          <Property Name="idScan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInvoice" Type="Int32" />
+          <Property Name="idJobs" Type="Int32" />
+          <Property Name="ScanIncrement" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="idSupplier" />
+          </Key>
+          <Property Name="idSupplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Psc" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Mesto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsNespolehlivyPlatce" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isLogin" Type="Boolean" />
+          <Property Name="isInvoicing" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="alextradeModelStoreContainer" CdmEntityContainer="alextradeEntities">
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="alextradeModel.InvoiceItems">
+              <MappingFragment StoreEntitySet="InvoiceItems">
+                <ScalarProperty Name="BasePriceFull" ColumnName="BasePriceFull" />
+                <ScalarProperty Name="BaseVat" ColumnName="BaseVat" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="idBaseValue" ColumnName="idBaseValue" />
+                <ScalarProperty Name="PriceFull" ColumnName="PriceFull" />
+                <ScalarProperty Name="PriceVat" ColumnName="PriceVat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idInvoiceItem" ColumnName="idInvoiceItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="alextradeModel.Invoices">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="NrItems" ColumnName="NrItems" />
+                <ScalarProperty Name="PriceFull" ColumnName="PriceFull" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="HisNumber" ColumnName="HisNumber" />
+                <ScalarProperty Name="MyNumber" ColumnName="MyNumber" />
+                <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+                <ScalarProperty Name="idJob" ColumnName="idJob" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="alextradeModel.Jobs">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="NrInvoices" ColumnName="NrInvoices" />
+                <ScalarProperty Name="NrSCAN" ColumnName="NrSCAN" />
+                <ScalarProperty Name="SCANPath" ColumnName="SCANPath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idZadavatel" ColumnName="idZadavatel" />
+                <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+                <ScalarProperty Name="idJob" ColumnName="idJob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainSetting">
+            <EntityTypeMapping TypeName="alextradeModel.MainSetting">
+              <MappingFragment StoreEntitySet="MainSetting">
+                <ScalarProperty Name="dValue" ColumnName="dValue" />
+                <ScalarProperty Name="iValue" ColumnName="iValue" />
+                <ScalarProperty Name="sValue" ColumnName="sValue" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idMainSetting" ColumnName="idMainSetting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScanPDFs">
+            <EntityTypeMapping TypeName="alextradeModel.ScanPDFs">
+              <MappingFragment StoreEntitySet="ScanPDFs">
+                <ScalarProperty Name="ScanIncrement" ColumnName="ScanIncrement" />
+                <ScalarProperty Name="idJobs" ColumnName="idJobs" />
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idScan" ColumnName="idScan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="alextradeModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="IsNespolehlivyPlatce" ColumnName="IsNespolehlivyPlatce" />
+                <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+                <ScalarProperty Name="Psc" ColumnName="Psc" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Dic" ColumnName="Dic" />
+                <ScalarProperty Name="Ic" ColumnName="Ic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="alextradeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="isInvoicing" ColumnName="isInvoicing" />
+                <ScalarProperty Name="isLogin" ColumnName="isLogin" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

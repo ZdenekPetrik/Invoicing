@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00b8a8728d3b4dbd82d5b576cc30baa3" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="alextradeModel.FirmCategory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.Firms" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.InvoiceItems" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.Invoices" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="alextradeModel.InvoiceState" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="alextradeModel.MainSetting" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="alextradeModel.Orders" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.OrderState" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="alextradeModel.Pair" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="alextradeModel.PairType" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.SazbaDPH" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="alextradeModel.ScanPDFs" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="alextradeModel.State" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="alextradeModel.Unity" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="alextradeModel.Users" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.UserSetting" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="alextradeModel.DayPrices" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="alextradeModel.Druh" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="alextradeModel.Komodita" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="alextradeModel.ListedCompany" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="alextradeModel.PodKomodita" Width="1.5" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="alextradeModel.Priznak" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.History" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="alextradeModel.InvoiceItemState" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="alextradeModel.ListedProduct" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="alextradeModel.wFirms" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="alextradeModel.wInvoices" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="alextradeModel.wItems" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="alextradeModel.wOrders" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.wPair" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="alextradeModel.wScanPDFs" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="alextradeModel.wProductTable" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="alextradeModel.wWeekMinPricesTemp" Width="1.5" PointX="14.75" PointY="12.75" />
+        <EntityTypeShape EntityType="alextradeModel.wWeekPrices" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="alextradeModel.wWeekPricesTemp" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="alextradeModel.Product" Width="1.5" PointX="15.375" PointY="16.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -55,16 +55,21 @@
       this.položkyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menu_ItemsNew = new System.Windows.Forms.ToolStripMenuItem();
       this.menu_ItemsEdit = new System.Windows.Forms.ToolStripMenuItem();
+      this.menu_ParovaniCen = new System.Windows.Forms.ToolStripMenuItem();
+      this.menu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.tabControlsUp = new System.Windows.Forms.TabControl();
       this.tabInvoices = new System.Windows.Forms.TabPage();
       this.tabSuppliers = new System.Windows.Forms.TabPage();
       this.tblScanPDF = new System.Windows.Forms.TabPage();
-      this.ctrlListItems1 = new Invoicing.Controls.ctrlListItems();
       this.panelOrder = new System.Windows.Forms.Panel();
-      this.menu_ParovaniCen = new System.Windows.Forms.ToolStripMenuItem();
-      this.menu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+      this.reportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.menu_OrderReporting = new System.Windows.Forms.ToolStripMenuItem();
+      this.menu_CheckReporting = new System.Windows.Forms.ToolStripMenuItem();
+      this.ctrlListItems1 = new Invoicing.Controls.ctrlListItems();
+      this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.menu_AboutBox = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -82,7 +87,9 @@
             this.změnaFázeToolStripMenuItem,
             this.položkyToolStripMenuItem,
             this.menu_ParovaniCen,
-            this.menu_Refresh});
+            this.menu_Refresh,
+            this.reportingToolStripMenuItem,
+            this.helpToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Size = new System.Drawing.Size(1276, 24);
@@ -102,21 +109,21 @@
       // Menu_OrderNew
       // 
       this.Menu_OrderNew.Name = "Menu_OrderNew";
-      this.Menu_OrderNew.Size = new System.Drawing.Size(152, 22);
+      this.Menu_OrderNew.Size = new System.Drawing.Size(116, 22);
       this.Menu_OrderNew.Text = "Nová ...";
       this.Menu_OrderNew.Click += new System.EventHandler(this.Menu_OrderNew_Click);
       // 
       // Menu_OrderChange
       // 
       this.Menu_OrderChange.Name = "Menu_OrderChange";
-      this.Menu_OrderChange.Size = new System.Drawing.Size(152, 22);
+      this.Menu_OrderChange.Size = new System.Drawing.Size(116, 22);
       this.Menu_OrderChange.Text = "Vyber ...";
       this.Menu_OrderChange.Click += new System.EventHandler(this.Menu_OrderChange_Click);
       // 
       // Menu_OrderDetail
       // 
       this.Menu_OrderDetail.Name = "Menu_OrderDetail";
-      this.Menu_OrderDetail.Size = new System.Drawing.Size(152, 22);
+      this.Menu_OrderDetail.Size = new System.Drawing.Size(116, 22);
       this.Menu_OrderDetail.Text = "Detail";
       this.Menu_OrderDetail.Click += new System.EventHandler(this.Menu_OrderDetail_Click);
       // 
@@ -274,15 +281,29 @@
       // menu_ItemsNew
       // 
       this.menu_ItemsNew.Name = "menu_ItemsNew";
-      this.menu_ItemsNew.Size = new System.Drawing.Size(152, 22);
+      this.menu_ItemsNew.Size = new System.Drawing.Size(108, 22);
       this.menu_ItemsNew.Text = "Add ...";
       this.menu_ItemsNew.Click += new System.EventHandler(this.menu_ItemsNew_Click);
       // 
       // menu_ItemsEdit
       // 
       this.menu_ItemsEdit.Name = "menu_ItemsEdit";
-      this.menu_ItemsEdit.Size = new System.Drawing.Size(152, 22);
+      this.menu_ItemsEdit.Size = new System.Drawing.Size(108, 22);
       this.menu_ItemsEdit.Text = "Edit ...";
+      // 
+      // menu_ParovaniCen
+      // 
+      this.menu_ParovaniCen.Name = "menu_ParovaniCen";
+      this.menu_ParovaniCen.Size = new System.Drawing.Size(87, 20);
+      this.menu_ParovaniCen.Text = "Párování cen";
+      this.menu_ParovaniCen.Click += new System.EventHandler(this.menu_ParovaniCen_Click);
+      // 
+      // menu_Refresh
+      // 
+      this.menu_Refresh.Name = "menu_Refresh";
+      this.menu_Refresh.Size = new System.Drawing.Size(58, 20);
+      this.menu_Refresh.Text = "Refresh";
+      this.menu_Refresh.Click += new System.EventHandler(this.menu_Refresh_Click);
       // 
       // statusStrip1
       // 
@@ -354,13 +375,6 @@
       this.tblScanPDF.Text = "Scan PDF";
       this.tblScanPDF.UseVisualStyleBackColor = true;
       // 
-      // ctrlListItems1
-      // 
-      this.ctrlListItems1.Location = new System.Drawing.Point(4, 4);
-      this.ctrlListItems1.Name = "ctrlListItems1";
-      this.ctrlListItems1.Size = new System.Drawing.Size(662, 167);
-      this.ctrlListItems1.TabIndex = 0;
-      // 
       // panelOrder
       // 
       this.panelOrder.Location = new System.Drawing.Point(16, 36);
@@ -368,19 +382,49 @@
       this.panelOrder.Size = new System.Drawing.Size(1079, 26);
       this.panelOrder.TabIndex = 4;
       // 
-      // menu_ParovaniCen
+      // reportingToolStripMenuItem
       // 
-      this.menu_ParovaniCen.Name = "menu_ParovaniCen";
-      this.menu_ParovaniCen.Size = new System.Drawing.Size(87, 20);
-      this.menu_ParovaniCen.Text = "Párování cen";
-      this.menu_ParovaniCen.Click += new System.EventHandler(this.menu_ParovaniCen_Click);
+      this.reportingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_OrderReporting,
+            this.menu_CheckReporting});
+      this.reportingToolStripMenuItem.Name = "reportingToolStripMenuItem";
+      this.reportingToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+      this.reportingToolStripMenuItem.Text = "Reporting";
       // 
-      // menu_Refresh
+      // menu_OrderReporting
       // 
-      this.menu_Refresh.Name = "menu_Refresh";
-      this.menu_Refresh.Size = new System.Drawing.Size(58, 20);
-      this.menu_Refresh.Text = "Refresh";
-      this.menu_Refresh.Click += new System.EventHandler(this.menu_Refresh_Click);
+      this.menu_OrderReporting.Name = "menu_OrderReporting";
+      this.menu_OrderReporting.Size = new System.Drawing.Size(152, 22);
+      this.menu_OrderReporting.Text = "Zakázky";
+      this.menu_OrderReporting.Click += new System.EventHandler(this.menu_OrderReporting_Click);
+      // 
+      // menu_CheckReporting
+      // 
+      this.menu_CheckReporting.Name = "menu_CheckReporting";
+      this.menu_CheckReporting.Size = new System.Drawing.Size(152, 22);
+      this.menu_CheckReporting.Text = "Kontrolní";
+      // 
+      // ctrlListItems1
+      // 
+      this.ctrlListItems1.Location = new System.Drawing.Point(4, 4);
+      this.ctrlListItems1.Name = "ctrlListItems1";
+      this.ctrlListItems1.Size = new System.Drawing.Size(662, 167);
+      this.ctrlListItems1.TabIndex = 0;
+      // 
+      // helpToolStripMenuItem
+      // 
+      this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_AboutBox});
+      this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+      this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+      this.helpToolStripMenuItem.Text = "Help";
+      // 
+      // menu_AboutBox
+      // 
+      this.menu_AboutBox.Name = "menu_AboutBox";
+      this.menu_AboutBox.Size = new System.Drawing.Size(152, 22);
+      this.menu_AboutBox.Text = "About";
+      this.menu_AboutBox.Click += new System.EventHandler(this.menu_AboutBox_Click);
       // 
       // frmMain
       // 
@@ -448,5 +492,10 @@
         private Controls.ctrlListItems ctrlListItems1;
         private System.Windows.Forms.ToolStripMenuItem menu_ParovaniCen;
         private System.Windows.Forms.ToolStripMenuItem menu_Refresh;
+        private System.Windows.Forms.ToolStripMenuItem reportingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_OrderReporting;
+        private System.Windows.Forms.ToolStripMenuItem menu_CheckReporting;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_AboutBox;
     }
 }

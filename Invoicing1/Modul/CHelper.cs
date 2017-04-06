@@ -79,5 +79,14 @@ namespace Invoicing.Modul
     {
       return F.ToString("F0");
     }
+
+    public static string DoubleToString(double? F)
+    {
+      return DoubleToString(F ?? 0);
+    }
+    public static string DoubleToString(double F)
+    {
+      return F.ToString("F2");
+    }
   }
 }

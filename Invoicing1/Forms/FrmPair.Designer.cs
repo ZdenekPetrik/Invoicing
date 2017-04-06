@@ -131,6 +131,7 @@
       this.splitContainer1.Panel1.Controls.Add(this.lblPairStatus);
       this.splitContainer1.Panel1.Controls.Add(this.lblPairRow);
       this.splitContainer1.Panel1.Controls.Add(this.gvPair);
+      this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
       // 
       // splitContainer1.Panel2
       // 

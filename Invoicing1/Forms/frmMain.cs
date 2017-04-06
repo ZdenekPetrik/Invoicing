@@ -164,7 +164,17 @@ namespace Invoicing.Forms
       f.Show();
     }
 
+    private void menu_OrderReporting_Click(object sender, EventArgs e)
+    {
+      frmReportOrder frm = new frmReportOrder();
+      frm.Show();
+    }
 
+    private void menu_AboutBox_Click(object sender, EventArgs e)
+    {
+      frmAbout frm = new frmAbout();
+      frm.Show();
+    }
 
 
     #endregion
@@ -421,6 +431,8 @@ namespace Invoicing.Forms
       }
     }
 
+ 
+ 
    
 
 

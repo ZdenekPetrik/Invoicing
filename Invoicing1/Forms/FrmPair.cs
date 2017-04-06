@@ -44,6 +44,11 @@ namespace Invoicing.Forms
       cmbPairType.SelectedIndex = 0;
       MyResize();
       lblPairStatus.Text = "Spárováno: " + PairItems.FindAll(x => x.idPair != null).Count.ToString() + "/" + PairItems.Count.ToString();
+      txtSearchString.KeyDown += (sender1, args) =>
+      {
+        if (args.KeyCode == Keys.Return)
+          btnSearch.PerformClick();
+      };
     }
 
     private void btnSearch_Click(object sender, EventArgs e)
@@ -453,7 +458,7 @@ namespace Invoicing.Forms
           if (Myrow.Cells["Rozdíl"] != null)
           {
             double Percent = (double)Myrow.Cells["Rozdíl"].Value;
-            if (Percent > 20)
+            if (Percent < -20)
               Myrow.Cells["Rozdíl"].Style.ForeColor = Color.OrangeRed;
             else
               Myrow.Cells["Rozdíl"].Style.ForeColor = Color.Black;
@@ -481,6 +486,11 @@ namespace Invoicing.Forms
     }
 
     private void gvPair_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+
+    }
+
+    private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
     {
 
     }

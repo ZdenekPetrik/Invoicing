@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -215,6 +218,12 @@
     <Compile Include="Forms\frmProductDetail.Designer.cs">
       <DependentUpon>frmProductDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmReportOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReportOrder.Designer.cs">
+      <DependentUpon>frmReportOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\_frmDefault.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +259,7 @@
     </Compile>
     <Compile Include="Modul\CAres.cs" />
     <Compile Include="Modul\CDatabase.cs" />
+    <Compile Include="Modul\CDataTableExtension.cs" />
     <Compile Include="Modul\CHelper.cs" />
     <Compile Include="Modul\CInvoices.cs" />
     <Compile Include="Modul\CMainEventLog.cs" />
@@ -389,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmProductDetail.resx">
       <DependentUpon>frmProductDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmReportOrder.resx">
+      <DependentUpon>frmReportOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\_frmDefault.resx">
       <DependentUpon>_frmDefault.cs</DependentUpon>
